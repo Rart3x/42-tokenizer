@@ -1,13 +1,21 @@
-# Sample Hardhat Project
+# ⚙️ K42Token - Deployment Guide
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+## 🛠️ Prerequisites
 
-Try running some of the following tasks:
+- 💻 Node.js and npm installed on your machine.
+- 🔑 A wallet private key with BNB funds for the Binance Smart Chain network (Testnet or Mainnet).
+- 🌐 RPC URL of the Binance Smart Chain node you want to connect to.
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.js
-```
+---
+
+## 🚩 Deployment - Case 1: Project already cloned with package.json
+
+```bash
+# 📦 Install dependencies
+npm install
+
+# 🏗️ Compile the contracts
+npx hardhat compile
+
+# 🚀 Deploy to BSC Testnet
+npx hardhat run scripts/deploy.js --network bsctest
