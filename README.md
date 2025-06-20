@@ -53,3 +53,11 @@ K42Token is a secure and flexible ERC20 token built on OpenZeppelin standards, d
 | Pausable     | Owner can pause/unpause transfers and minting         |
 
 ---
+
+## 📍 Contract Deployment
+
+| Detail              | Value                                                                 |
+|---------------------|-----------------------------------------------------------------------|
+| **Deployed Address**| `0x6c509FD32B05D2139F2509e380471A9d55Da721b` *(BSC Testnet)*          |
+| **Deployer Address**| `0x127FEEd0b6f60a0451a156C480A8b453368587b6`                          |
+| **Initial Minted To**| Deployer Address (1% of total supply)                                 |
