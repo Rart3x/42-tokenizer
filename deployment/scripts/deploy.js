@@ -1,15 +1,20 @@
-require("dotenv").config();
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 
 async function main() {
-  const K42Token = await ethers.deployContract("K42Token");
-  await K42Token.waitForDeployment();
+  const [deployer] = await hre.ethers.getSigners();
 
-  console.log(`✅ K42Token deployed at: ${K42Token.target}`);
+  console.log("Deploying with address:", deployer.address);
+
+  const K42Token = await hre.ethers.getContractFactory("K42Token");
+  const k42 = await K42Token.deploy(deployer.address); // 👈 Passe bien une adresse ici !
+
+  await k42.waitForDeployment();
+
+  console.log("✅ K42Token deployed to:", await k42.getAddress());
 }
 
 main().catch((error) => {
   console.error("❌ Deployment failed:", error);
-  process.exit(1);
+  process.exitCode = 1;
 });
 
