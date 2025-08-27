@@ -6,7 +6,7 @@ async function main() {
   console.log("Deploying with address:", deployer.address);
 
   const K42Token = await hre.ethers.getContractFactory("K42Token");
-  const k42 = await K42Token.deploy(deployer.address); // 👈 Passe bien une adresse ici !
+  const k42 = await K42Token.deploy(deployer.address);
 
   await k42.waitForDeployment();
 
