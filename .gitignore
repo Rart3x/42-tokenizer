@@ -1,5 +1,5 @@
 deployment/node_modules
-.env
+deployment/.env
 
 # Hardhat files
 /cache
