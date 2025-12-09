@@ -1,8 +1,9 @@
-# 🚀 K42Token - General Overview
+🚀 K42Token - General Overview
+📖 Project Overview
 
-## 📖 Project Overview
+K42Token is a secure and flexible ERC20 token built on OpenZeppelin standards, designed to support various use cases while ensuring safety and maintainability.
 
-K42Token is a secure and flexible ERC20 token built on OpenZeppelin standards, designed to support a variety of use cases while ensuring safety and maintainability.
+The entire smart contract was coded in Solidity, the primary programming language used for Ethereum-compatible blockchains.
 
 ### ✨ Features
 
@@ -31,14 +32,18 @@ K42Token is a secure and flexible ERC20 token built on OpenZeppelin standards, d
 
 ---
 
-## 🧾 Multisig Minting Logic
+## ✅ Multisig & Control Functions
 
-- ✅ Minting requires multiple confirmations (`requiredConfirmations`) by designated owners.
-- 🧑‍🤝‍🧑 Owners are added via `addOwner(address)` and validated using the `isOwner` mapping.
-- ✍️ A mint request is initiated with `createMintRequest(address to, uint256 amount)` by any owner.
-- 🆗 Other owners must then call `confirmMintRequest(uint256 requestId)` to approve.
-- ✅ Once the request reaches the required confirmations, tokens are minted automatically.
-- 🔒 All mint operations are blocked when the contract is paused.
+| Function | Description | Who Can Call |
+|---------|-------------|--------------|
+| `addOwner(address)` | Adds a multisig owner | Owner |
+| `removeOwner(address)` *(if present)* | Removes a multisig owner | Owner |
+| `createMintRequest(address,uint256)` | Creates a mint request | Owner |
+| `confirmMintRequest(uint256)` | Confirms a mint request | Owner |
+| `getMintRequest(uint256)` | Returns request details | Anyone |
+| `pause()` | Pauses all transfers and minting | Owner |
+| `unpause()` | Unpauses all transfers and minting | Owner |
+| `_update(...)` | Internal ERC20 update override | Internal |
 
 ---
 
