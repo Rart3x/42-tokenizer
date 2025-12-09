@@ -1,5 +1,5 @@
-🚀 K42Token - General Overview
-📖 Project Overview
+# 🚀 K42Token - General Overview
+## 📖 Project Overview
 
 K42Token is a secure and flexible ERC20 token built on OpenZeppelin standards, designed to support various use cases while ensuring safety and maintainability.
 
