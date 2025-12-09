@@ -67,4 +67,51 @@ describe("K42Token Multisig Tests", function () {
         ).to.be.revertedWith("Already executed");
     });
 
+    it("6️⃣ - Only owner can pause the contract", async () => {
+        // Owner pauses the contract
+        await k42.connect(owner).pause();
+        expect(await k42.paused()).to.equal(true);
+
+        // Non-owner should fail
+        await expect(
+            k42.connect(user).pause()
+        ).to.be.revertedWith("Not an owner");
+    });
+
+    it("7️⃣ - Pausing the contract blocks transfers", async () => {
+        // Still paused from previous test
+        await expect(
+            k42.connect(owner).transfer(user.address, ethers.parseEther("1"))
+        ).to.be.revertedWithCustomError(k42, "EnforcedPause")
+    });
+
+    it("8️⃣ - Pausing blocks mint requests", async () => {
+        await expect(
+            k42.connect(owner).createMintRequest(
+                user.address,
+                ethers.parseEther("10")
+            )
+        ).to.be.revertedWithCustomError(k42, "EnforcedPause")
+    });
+
+    it("9️⃣ - Owner can unpause the contract", async () => {
+        await k42.connect(owner).unpause();
+        expect(await k42.paused()).to.equal(false);
+    });
+
+    it("🔟 - After unpause: transfer & mint request work again", async () => {
+        // Transfer should now work again
+        await expect(
+            k42.connect(owner).transfer(user.address, ethers.parseEther("1"))
+        ).to.not.be.reverted;
+
+        // Mint request should work again
+        await expect(
+            k42.connect(owner).createMintRequest(
+                user.address,
+                ethers.parseEther("20")
+            )
+        ).to.not.be.reverted;
+    });
+
 });
