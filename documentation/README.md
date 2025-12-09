@@ -108,3 +108,18 @@ npx hardhat compile
 ```bash
 npx hardhat run scripts/deploy.js --network bsctest
 ```
+
+## ✅ K42Token Multisig & Control Functions
+
+| Function | Description | Who Can Call |
+|---------|-------------|--------------|
+| `addOwner(address)` | Adds a multisig owner | Owner |
+| `removeOwner(address)` *(if present)* | Removes a multisig owner | Owner |
+| `createMintRequest(address,uint256)` | Creates a mint request | Owner |
+| `confirmMintRequest(uint256)` | Confirms a mint request | Owner |
+| `getMintRequest(uint256)` | Returns request details | Anyone |
+| `pause()` | Pauses all transfers and minting | Owner |
+| `unpause()` | Unpauses all transfers and minting | Owner |
+| `_update(...)` | Internal ERC20 update override | Internal |
+
+---
